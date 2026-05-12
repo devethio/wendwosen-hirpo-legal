@@ -30,6 +30,64 @@ const recognitions = [
   { year: "2021", body: "Appointed Visiting Lecturer, Addis Ababa University School of Law" },
 ];
 
+const caseStudies = [
+  {
+    n: "Case 01",
+    tag: "Cross-Border Energy Arbitration",
+    title: "ICC arbitration over a $480M hydropower EPC dispute.",
+    body: "Lead counsel for an Ethiopian state-owned utility against a European EPC consortium claiming variation costs and delay damages. Drafted the jurisdictional response under the 1958 New York Convention, coordinated three expert witnesses across Geneva and Addis Ababa, and secured a confidential settlement on the eve of the merits hearing.",
+    outcomes: [
+      { k: "62%", v: "Reduction in claimed damages" },
+      { k: "14 mo", v: "From filing to resolution" },
+      { k: "$0", v: "Adverse cost award" },
+    ],
+    seat: "Seat: Paris · Governing law: Ethiopian & ICC Rules 2021",
+  },
+  {
+    n: "Case 02",
+    tag: "Sovereign Privatization Advisory",
+    title: "Structuring the partial privatization of a flagship telecom.",
+    body: "Retained by a working group within the Ministry of Finance to design the legal architecture for the partial divestiture of a state asset valued in excess of $850M. Drafted the share purchase framework, negotiated the bilateral investment protections, and counseled the inter-ministerial committee through three rounds of competitive bidding.",
+    outcomes: [
+      { k: "$850M+", v: "Transaction perimeter" },
+      { k: "4", v: "International bidders qualified" },
+      { k: "9 mo", v: "From mandate to signed SPA" },
+    ],
+    seat: "Sector: Telecommunications · Counterparties: 3 continents",
+  },
+  {
+    n: "Case 03",
+    tag: "Corporate Restructuring",
+    title: "Pre-IPO restructuring of a Pan-African logistics group.",
+    body: "Advised a founder-led logistics group operating across six COMESA states on a holding-company restructure ahead of a planned dual listing in Nairobi and London. Resolved a long-standing minority shareholder dispute, harmonized seven national subsidiaries under a Mauritian topco, and obtained advance tax rulings in three jurisdictions.",
+    outcomes: [
+      { k: "7", v: "Subsidiaries consolidated" },
+      { k: "3x", v: "Pre-money valuation uplift" },
+      { k: "100%", v: "Minority dispute settled out-of-court" },
+    ],
+    seat: "Jurisdictions: ET · KE · UG · RW · MU · UK",
+  },
+  {
+    n: "Case 04",
+    tag: "Investment Treaty Defense",
+    title: "Defending a sovereign investment incentive against ICSID claim.",
+    body: "Co-counsel to an Ethiopian regulatory authority in a $112M ICSID claim brought by a foreign mining concessionaire alleging indirect expropriation following a regulatory reform. Built the public-policy and police-powers defense, deposed three quantum experts, and obtained full dismissal on the merits.",
+    outcomes: [
+      { k: "$112M", v: "Claim dismissed in full" },
+      { k: "100%", v: "Costs awarded to the State" },
+      { k: "0", v: "Adverse precedent created" },
+    ],
+    seat: "Forum: ICSID · Washington, D.C.",
+  },
+];
+
+const clientOutcomes = [
+  { k: "$1.4B", v: "Aggregate transaction value advised" },
+  { k: "94%", v: "Matters resolved without trial" },
+  { k: "27", v: "Sovereign & multilateral mandates" },
+  { k: "0", v: "Disciplinary actions in 18 years of practice" },
+];
+
 function Index() {
   return (
     <div className="bg-parchment text-ink selection:bg-ochre/20">
@@ -148,6 +206,62 @@ function Index() {
               <div key={r.year} className="grid grid-cols-[80px_1fr] gap-6 py-5 border-b border-ink/10 items-start">
                 <span className="font-mono text-xs text-ochre pt-1">{r.year}</span>
                 <p className="text-ink/80 leading-relaxed">{r.body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Case Studies */}
+      <section className="px-6 md:px-12 lg:px-20 py-32 border-t border-ink/10">
+        <div className="max-w-7xl mx-auto">
+          <header className="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-8">
+            <div className="max-w-2xl">
+              <span className="font-mono text-[10px] uppercase tracking-widest text-ochre mb-4 block">— Selected Engagements</span>
+              <h2 className="font-display text-5xl md:text-6xl tracking-tight text-balance">Representative matters, redacted for confidence.</h2>
+            </div>
+            <p className="max-w-sm text-ink/60 text-sm leading-relaxed">
+              Identifying details have been omitted in line with the firm's confidentiality undertakings. Full references available on a privileged basis to qualified instructing counsel.
+            </p>
+          </header>
+
+          <div className="space-y-px bg-ink/10 border border-ink/10">
+            {caseStudies.map((c) => (
+              <article key={c.n} className="bg-parchment p-10 md:p-14 grid md:grid-cols-12 gap-10">
+                <div className="md:col-span-4">
+                  <span className="font-mono text-[10px] uppercase tracking-widest text-ochre block mb-4">{c.n} · {c.tag}</span>
+                  <h3 className="font-display text-3xl md:text-4xl leading-tight tracking-tight text-balance">{c.title}</h3>
+                  <p className="font-mono text-[10px] uppercase tracking-widest text-ink/40 mt-6">{c.seat}</p>
+                </div>
+                <div className="md:col-span-5">
+                  <p className="text-ink/75 leading-relaxed text-pretty">{c.body}</p>
+                </div>
+                <div className="md:col-span-3 border-l border-ink/10 pl-6 space-y-6">
+                  {c.outcomes.map((o) => (
+                    <div key={o.v}>
+                      <div className="font-display text-3xl text-ink">{o.k}</div>
+                      <div className="font-mono text-[10px] uppercase tracking-widest text-ink/50 mt-1">{o.v}</div>
+                    </div>
+                  ))}
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Client Outcomes Strip */}
+      <section className="bg-ink text-parchment px-6 md:px-12 lg:px-20 py-24">
+        <div className="max-w-7xl mx-auto grid md:grid-cols-12 gap-12 items-end">
+          <div className="md:col-span-5">
+            <span className="font-mono text-[10px] uppercase tracking-widest text-ochre mb-4 block">— Client Outcomes</span>
+            <h2 className="font-display text-4xl md:text-5xl tracking-tight text-balance">Measured by what we resolve, not what we file.</h2>
+          </div>
+          <div className="md:col-span-7 grid grid-cols-2 md:grid-cols-4 gap-8">
+            {clientOutcomes.map((s) => (
+              <div key={s.v} className="border-t border-parchment/15 pt-5">
+                <div className="font-display text-4xl">{s.k}</div>
+                <div className="font-mono text-[10px] uppercase tracking-widest text-parchment/60 mt-2 leading-snug">{s.v}</div>
               </div>
             ))}
           </div>
