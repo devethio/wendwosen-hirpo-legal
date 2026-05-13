@@ -88,6 +88,44 @@ const clientOutcomes = [
   { k: "0", v: "Disciplinary actions in 18 years of practice" },
 ];
 
+const clientTestimonials = [
+  {
+    quote: "He held the line on jurisdiction when three other firms had already conceded it. The tribunal's ruling vindicated a position only he was willing to argue.",
+    attribution: "General Counsel",
+    org: "State-Owned Utility, Horn of Africa",
+    practice: "Commercial Arbitration",
+    engagement: "ICC Arbitration · Defense",
+  },
+  {
+    quote: "Wendwosen translated a politically sensitive divestiture into a transaction the market could actually price. His drafting survived four rounds of ministerial review without a comma changed.",
+    attribution: "Director, Privatization Unit",
+    org: "Federal Ministry, Ethiopia",
+    practice: "Sovereign Advisory",
+    engagement: "Privatization Framework · Lead Counsel",
+  },
+  {
+    quote: "We retained him for a single matter and have not engaged anyone else since. Calm, decisive, and remarkably well-prepared.",
+    attribution: "General Counsel",
+    org: "European Energy Consortium",
+    practice: "Cross-Border Disputes",
+    engagement: "Pre-Arbitration Strategy",
+  },
+  {
+    quote: "Our restructuring crossed six tax regimes and a minority-shareholder feud older than the company itself. He resolved both quietly, in the same quarter.",
+    attribution: "Founder & Chairman",
+    org: "Pan-African Logistics Group",
+    practice: "Corporate Restructuring",
+    engagement: "Pre-IPO Holdco Reorganization",
+  },
+  {
+    quote: "His grasp of both the Ethiopian commercial code and international arbitration norms is unparalleled. He is a bridge between two worlds.",
+    attribution: "Managing Director",
+    org: "Pan-African Infrastructure Group",
+    practice: "Investment & Infrastructure",
+    engagement: "Concession Renegotiation",
+  },
+];
+
 function Index() {
   return (
     <div className="bg-parchment text-ink selection:bg-ochre/20">
@@ -271,17 +309,31 @@ function Index() {
       {/* Testimonials */}
       <section className="bg-coffee/95 text-parchment px-6 md:px-12 lg:px-20 py-32" style={{ backgroundColor: "var(--coffee)" }}>
         <div className="max-w-7xl mx-auto">
-          <span className="font-mono text-[10px] uppercase tracking-widest text-ochre mb-4 block">— Client voices</span>
-          <h2 className="font-display text-4xl md:text-5xl tracking-tight mb-16 max-w-2xl">Trusted by ministries, multinationals, and founders alike.</h2>
-          <div className="grid md:grid-cols-2 gap-12">
-            <figure className="border-l-2 border-ochre pl-8">
-              <blockquote className="font-display text-2xl italic leading-relaxed mb-6">Mr. Hirpo's grasp of both Ethiopian commercial code and international arbitration norms is unparalleled. He is a bridge between two worlds.</blockquote>
-              <figcaption className="font-mono text-[10px] uppercase tracking-widest text-parchment/60">Managing Director · Pan-African Infrastructure Group</figcaption>
-            </figure>
-            <figure className="border-l-2 border-ochre pl-8">
-              <blockquote className="font-display text-2xl italic leading-relaxed mb-6">Calm, decisive, and remarkably well-prepared. We retained him for a single matter and have not engaged anyone else since.</blockquote>
-              <figcaption className="font-mono text-[10px] uppercase tracking-widest text-parchment/60">General Counsel · European Energy Consortium</figcaption>
-            </figure>
+          <header className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
+            <div className="max-w-2xl">
+              <span className="font-mono text-[10px] uppercase tracking-widest text-ochre mb-4 block">— Client Testimonials</span>
+              <h2 className="font-display text-4xl md:text-5xl tracking-tight text-balance">Trusted by ministries, multinationals, and founders alike.</h2>
+            </div>
+            <p className="max-w-sm text-parchment/60 text-sm leading-relaxed">
+              Quotes are reproduced with permission and redacted to preserve the identity of the instructing party. Each is mapped to the practice area and engagement type from which it originated.
+            </p>
+          </header>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-parchment/10 border border-parchment/10">
+            {clientTestimonials.map((t) => (
+              <figure key={t.quote} className="p-10 md:p-12 flex flex-col" style={{ backgroundColor: "var(--coffee)" }}>
+                <div className="flex items-center gap-3 mb-6">
+                  <span className="font-mono text-[10px] uppercase tracking-widest text-ochre">{t.practice}</span>
+                </div>
+                <blockquote className="font-display text-xl md:text-2xl italic leading-relaxed mb-8 text-balance flex-1">
+                  &ldquo;{t.quote}&rdquo;
+                </blockquote>
+                <figcaption className="border-t border-parchment/15 pt-5 mt-auto">
+                  <div className="text-sm font-medium text-parchment">{t.attribution}</div>
+                  <div className="text-xs text-parchment/60 mt-1">{t.org}</div>
+                  <div className="font-mono text-[10px] uppercase tracking-widest text-parchment/50 mt-3">{t.engagement}</div>
+                </figcaption>
+              </figure>
+            ))}
           </div>
         </div>
       </section>
