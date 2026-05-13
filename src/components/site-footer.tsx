@@ -16,7 +16,7 @@ export function SiteFooter() {
             <li>Bole Sub-City, Friendship Building</li>
             <li>4th Floor, Suite 412</li>
             <li>Addis Ababa, Ethiopia</li>
-            <li className="pt-2">+251 911 234 567</li>
+            <li className="pt-2"><a href="tel:+251911342578" className="hover:text-parchment transition-colors">+251 911 342 578</a></li>
             <li>counsel@hirpolegal.et</li>
           </ul>
         </div>
