@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { SiteNav } from "@/components/site-nav";
 import { SiteFooter } from "@/components/site-footer";
 import { site } from "@/lib/site";
-import portrait from "@/assets/wendwosen-portrait.jpg";
+import fullLength from "@/assets/wendwosen-full-length.jpg";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -41,9 +41,10 @@ function About() {
               <span>Bole · Addis Ababa</span>
             </div>
           </div>
-          <div className="lg:col-span-5 animate-fade-up-delay">
-            <img src={portrait} alt="Wendwosen Hirpo" width={1080} height={1350} className="w-full aspect-[4/5] object-cover" />
-          </div>
+          <figure className="group relative lg:col-span-5 mr-4 mb-4 animate-fade-up-delay">
+            <div aria-hidden className="absolute inset-0 translate-x-4 translate-y-4 border border-ochre/50" />
+            <img src={fullLength} alt="Wendwosen Hirpo" width={540} height={720} className="portrait-tone relative w-full aspect-[3/4] object-cover" />
+          </figure>
         </div>
       </section>
 

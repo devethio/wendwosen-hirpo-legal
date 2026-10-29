@@ -33,8 +33,12 @@ function Index() {
       <SiteNav />
 
       {/* Hero */}
-      <section className="relative min-h-[90vh] flex items-center px-6 md:px-12 lg:px-20 py-20 overflow-hidden">
+      <section className="relative min-h-[90vh] flex items-center px-6 md:px-12 lg:px-20 pt-0 pb-20 md:pt-16 lg:py-20 overflow-hidden">
         <div className="z-10 max-w-3xl animate-fade-up">
+          <figure className="group lg:hidden -mx-6 md:mx-0 md:max-w-md mb-12 relative">
+            <img src={portrait} alt="Wendwosen Hirpo at Addis Ababa University" width={960} height={1280} className="portrait-tone w-full aspect-[4/5] object-cover object-[50%_30%]" />
+            <figcaption className="absolute bottom-0 inset-x-0 px-6 pt-16 pb-5 bg-gradient-to-t from-ink/70 to-transparent font-mono text-[10px] uppercase tracking-widest text-parchment/85">Addis Ababa University</figcaption>
+          </figure>
           <div className="flex items-center gap-3 mb-6">
             <div className="h-px w-12 bg-ochre"></div>
             <span className="font-mono text-[10px] uppercase tracking-widest text-ochre">Addis Ababa · Ethiopia</span>
@@ -68,10 +72,14 @@ function Index() {
             </div>
           </div>
         </div>
-        <div className="absolute right-0 top-0 w-1/2 h-full hidden lg:block animate-fade-up-delay">
-          <img src={portrait} alt="Wendwosen Hirpo" width={1080} height={1920} className="w-full h-full object-cover grayscale-[20%]" />
-          <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-parchment" />
-        </div>
+        <figure className="group absolute right-0 top-0 w-1/2 h-full hidden lg:block animate-fade-up-delay">
+          <img src={portrait} alt="Wendwosen Hirpo at Addis Ababa University" width={960} height={1280} className="portrait-tone w-full h-full object-cover object-[50%_35%]" />
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-parchment" />
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-ink/60 to-transparent" />
+          <figcaption className="absolute bottom-8 right-10 flex items-center gap-3 font-mono text-[10px] uppercase tracking-widest text-parchment/85">
+            <span className="h-px w-8 bg-ochre"></span>Addis Ababa University
+          </figcaption>
+        </figure>
       </section>
 
       {/* Practice Areas */}
