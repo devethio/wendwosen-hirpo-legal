@@ -11,6 +11,7 @@ export function SiteNav() {
         <Link to="/practice" className="hover:text-ochre transition-colors" activeProps={{ className: "text-ochre" }}>Practice</Link>
         <Link to="/about" className="hover:text-ochre transition-colors" activeProps={{ className: "text-ochre" }}>Counsel</Link>
         <Link to="/insights" className="hover:text-ochre transition-colors" activeProps={{ className: "text-ochre" }}>Insights</Link>
+        <Link to="/intake" className="hover:text-ochre transition-colors" activeProps={{ className: "text-ochre" }}>Assess Matter</Link>
         <Link to="/contact" className="hover:text-ochre transition-colors" activeProps={{ className: "text-ochre" }}>Contact</Link>
       </div>
     </nav>
