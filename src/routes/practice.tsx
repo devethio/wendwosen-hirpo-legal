@@ -6,19 +6,17 @@ export const Route = createFileRoute("/practice")({
   head: () => ({
     meta: [
       { title: "Practice Areas — Wendwosen Hirpo & Associates" },
-      { name: "description", content: "Commercial arbitration, corporate & M&A, intellectual property, sovereign advisory, and dispute resolution from Addis Ababa." },
+      { name: "description", content: "Intellectual property, contracts and commercial law, business formation and licensing, and litigation before the Federal courts of Ethiopia." },
     ],
   }),
   component: PracticePage,
 });
 
 const areas = [
-  { n: "01", title: "Commercial Arbitration", body: "ICC, LCIA, UNCITRAL, and ad-hoc proceedings. Counsel and arbitrator engagements across energy, construction, and cross-border trade.", bullets: ["Lead counsel & co-counsel mandates", "Sole and panel arbitrator appointments", "Enforcement under the New York Convention"] },
-  { n: "02", title: "Corporate & M&A", body: "Buy-side and sell-side advisory, joint ventures, and complex restructurings for sovereign, institutional, and family-owned enterprises.", bullets: ["Cross-border acquisitions", "Privatization & PPP frameworks", "Shareholder & joint-venture agreements"] },
-  { n: "03", title: "Intellectual Property", body: "Patent prosecution, trademark protection, geographic indications, and technology-transfer counsel — the foundation of the firm's practice.", bullets: ["Trademark & patent strategy", "Geographic indication protection abroad", "Licensing & technology transfer"] },
-  { n: "04", title: "Sovereign & Regulatory", body: "Advisory to ministries, regulators, and state-owned enterprises on investment law, concessions, and bilateral treaty obligations.", bullets: ["Investment treaty defense", "Concession & PSA negotiation", "Regulatory reform consultation"] },
-  { n: "05", title: "Banking & Finance", body: "Project finance, syndicated lending, and Islamic finance structures for infrastructure and industrial development.", bullets: ["Project finance documentation", "Syndicated facility agreements", "Security & enforcement opinions"] },
-  { n: "06", title: "Dispute Resolution", body: "Litigation before Federal Courts of Ethiopia, the Cassation Bench, and specialized tribunals.", bullets: ["Commercial litigation", "Tax & customs appeals", "Constitutional & administrative review"] },
+  { n: "01", title: "Intellectual Property", body: "The foundation of the practice. Protecting brands, inventions and creative work in Ethiopia, informed by years inside the Ethiopian Intellectual Property Office.", bullets: ["Trademark search, registration & renewal", "Patent and industrial design applications", "Oppositions and infringement matters", "Licensing and assignment agreements"] },
+  { n: "02", title: "Contracts & Commercial Law", body: "Drafting and reviewing the agreements businesses rely on, under the Ethiopian Civil and Commercial Codes.", bullets: ["Supply, distribution & service agreements", "Leases and employment contracts", "Contract review before signing"] },
+  { n: "03", title: "Business Formation & Licensing", body: "Helping local and foreign clients set up and keep their businesses in good standing in Ethiopia.", bullets: ["Company and branch registration", "Trade licences and renewals", "Memoranda and articles of association"] },
+  { n: "04", title: "Litigation", body: "Representation before the Federal courts of Ethiopia when a matter cannot be settled.", bullets: ["Commercial and contract disputes", "Intellectual property disputes", "Pre-litigation demands and negotiation"] },
 ];
 
 function PracticePage() {
@@ -27,8 +25,8 @@ function PracticePage() {
       <SiteNav />
       <section className="px-6 md:px-12 lg:px-20 pt-24 pb-16 max-w-7xl mx-auto">
         <span className="font-mono text-[10px] uppercase tracking-widest text-ochre mb-6 block">— Practice Areas</span>
-        <h1 className="font-display text-6xl md:text-7xl lg:text-8xl leading-[0.95] tracking-tighter mb-8 text-balance max-w-5xl">Six disciplines, one <span className="italic">unified</span> standard of care.</h1>
-        <p className="text-xl text-ink/70 leading-relaxed max-w-3xl font-light">A deliberately limited docket. Each matter receives the principal's direct attention from intake through resolution.</p>
+        <h1 className="font-display text-6xl md:text-7xl lg:text-8xl leading-[0.95] tracking-tighter mb-8 text-balance max-w-5xl">Four areas, one <span className="italic">unified</span> standard of care.</h1>
+        <p className="text-xl text-ink/70 leading-relaxed max-w-3xl font-light">Every matter is handled personally by Wendwosen, from intake through resolution.</p>
       </section>
       <section className="px-6 md:px-12 lg:px-20 pb-24 max-w-7xl mx-auto">
         <div className="grid md:grid-cols-2 gap-px bg-ink/10 border border-ink/10">

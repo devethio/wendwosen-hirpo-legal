@@ -1,6 +1,7 @@
 import { createOpenAI } from "@ai-sdk/openai";
 import { Output, streamText } from "ai";
 import { z } from "zod";
+import { practiceAreas } from "./site";
 
 export const intakeSchema = z.object({
   practiceArea: z.string(),
@@ -12,16 +13,7 @@ export const intakeSchema = z.object({
 });
 export type IntakeResult = z.infer<typeof intakeSchema>;
 
-const PRACTICE_AREAS = [
-  "Commercial Arbitration",
-  "Sovereign Advisory",
-  "Corporate Restructuring",
-  "Intellectual Property",
-  "Contracts & Commercial Law",
-  "Business Formation & Licensing",
-  "Litigation",
-  "Other / Needs review",
-];
+const PRACTICE_AREAS = [...practiceAreas, "Other / Needs review"];
 
 const INSTRUCTIONS = `You are an intake assistant for an Ethiopian law practice (Wendwosen Hirpo & Associates, Addis Ababa).
 Classify the prospective client's matter into exactly one of these practice areas: ${PRACTICE_AREAS.join("; ")}.
