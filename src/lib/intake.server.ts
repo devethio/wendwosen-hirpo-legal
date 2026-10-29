@@ -3,8 +3,10 @@ import { Output, streamText } from "ai";
 import { z } from "zod";
 import { practiceAreas } from "./site";
 
+const PRACTICE_AREAS = [...practiceAreas, "Other / Needs review"] as const;
+
 export const intakeSchema = z.object({
-  practiceArea: z.string(),
+  practiceArea: z.enum(PRACTICE_AREAS),
   confidence: z.enum(["high", "medium", "low"]),
   summary: z.string(),
   documents: z.array(z.string()),
@@ -13,12 +15,10 @@ export const intakeSchema = z.object({
 });
 export type IntakeResult = z.infer<typeof intakeSchema>;
 
-const PRACTICE_AREAS = [...practiceAreas, "Other / Needs review"];
-
 const INSTRUCTIONS = `You are an intake assistant for an Ethiopian law practice (Wendwosen Hirpo & Associates, Addis Ababa).
-Classify the prospective client's matter into exactly one of these practice areas: ${PRACTICE_AREAS.join("; ")}.
+Classify the prospective client's matter into exactly one of these practice areas, copying the English name verbatim: ${PRACTICE_AREAS.join("; ")}.
 Then prepare a consultation preparation checklist: documents to bring, questions the client should be ready to answer, and time-sensitive items to check (e.g. limitation periods, filing or renewal dates) phrased as things to confirm with counsel.
-Never give legal advice, opinions on the merits, or predictions of outcome. Keep the summary to two neutral sentences. 4-7 items per list. Write in the same language the client used.`;
+Never give legal advice, opinions on the merits, or predictions of outcome. Keep the summary to two neutral sentences. 4-7 items per list. Write the summary and every list item in the same language the client used (Amharic or English).`;
 
 export async function runIntake(matter: string, apiKey: string): Promise<IntakeResult> {
   const provider = createOpenAI({

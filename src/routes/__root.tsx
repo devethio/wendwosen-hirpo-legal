@@ -9,23 +9,27 @@ import {
   Scripts,
 } from "@tanstack/react-router";
 
+import { useLocale } from "@/lib/i18n";
 import appCss from "../styles.css?url";
 
+// Ethiopic families only download for pages that contain Ethiopic text (Google serves them by unicode-range).
+const fontsCss =
+  "https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+Ethiopic:wght@300;400;500;600&family=Noto+Serif+Ethiopic:wght@400;600;700&display=swap";
+
 function NotFoundComponent() {
+  const { t, to } = useLocale();
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
       <div className="max-w-md text-center">
         <h1 className="text-7xl font-bold text-foreground">404</h1>
-        <h2 className="mt-4 text-xl font-semibold text-foreground">Page not found</h2>
-        <p className="mt-2 text-sm text-muted-foreground">
-          The page you're looking for doesn't exist or has been moved.
-        </p>
+        <h2 className="mt-4 text-xl font-semibold text-foreground">{t.notFound.title}</h2>
+        <p className="mt-2 text-sm text-muted-foreground">{t.notFound.body}</p>
         <div className="mt-6">
           <Link
-            to="/"
+            to={to.home}
             className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
           >
-            Go home
+            {t.notFound.home}
           </Link>
         </div>
       </div>
@@ -84,6 +88,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:description", content: "Intellectual property, contracts, business formation and Federal court litigation. Bole, Addis Ababa." },
     ],
     links: [
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+      { rel: "stylesheet", href: fontsCss },
       {
         rel: "stylesheet",
         href: appCss,
@@ -97,8 +104,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 });
 
 function RootShell({ children }: { children: React.ReactNode }) {
+  const { lang } = useLocale();
   return (
-    <html lang="en">
+    <html lang={lang}>
       <head>
         <HeadContent />
       </head>

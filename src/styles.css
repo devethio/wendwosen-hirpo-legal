@@ -4,8 +4,8 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/* Editorial Archive — Wendwosen Hirpo Law */
-@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap");
+/* Editorial Archive — Wendwosen Hirpo Law. Web fonts are linked from the root route's head
+   (an @import here lands after Tailwind's output and is dropped by the optimizer). */
 
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
@@ -52,9 +52,9 @@
   --color-ink: var(--ink);
   --color-ochre: var(--ochre);
   --color-coffee: var(--coffee);
-  --font-display: "Playfair Display", ui-serif, Georgia, serif;
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --font-display: "Playfair Display", "Noto Serif Ethiopic", ui-serif, Georgia, serif;
+  --font-sans: "Inter", "Noto Sans Ethiopic", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", "Noto Sans Ethiopic", ui-monospace, monospace;
 }
 
 :root {
@@ -164,3 +164,37 @@
 @media (prefers-reduced-motion: reduce) {
   .portrait-tone { transition: none; }
 }
+
+/* Sections fade up as they scroll into view, where the browser supports scroll-driven animation. */
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+  @supports (animation-timeline: view()) {
+    .reveal {
+      animation: fade-up linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 40%;
+    }
+  }
+}
+
+.drop-cap::first-letter {
+  float: left;
+  font-family: var(--font-display);
+  font-size: 4.5rem;
+  line-height: 0.8;
+  padding: 0.35rem 0.75rem 0 0;
+  color: var(--ochre);
+}
+
+/* Amharic pages. Ethiopic has no italics, capitals or tradition of wide tracking, and its glyphs
+   are taller and more detailed, so the editorial styles are adapted rather than reused.
+   Unlayered rules here override Tailwind's utility layer. */
+:lang(am) .italic { font-style: normal; color: var(--ochre); }
+:lang(am) .uppercase { text-transform: none; }
+:lang(am) [class*="tracking-"] { letter-spacing: 0.01em; }
+:lang(am) [class*="leading-["] { line-height: 1.25; }
+:lang(am) h1, :lang(am) h2, :lang(am) h3 { font-weight: 600; }
+:lang(am) .text-\[10px\] { font-size: 12px; }
+:lang(am) .text-\[11px\] { font-size: 13px; }
+:lang(am) .font-light { font-weight: 400; }
+:lang(am) p { line-height: 1.85; }

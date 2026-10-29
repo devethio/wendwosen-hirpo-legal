@@ -2,16 +2,19 @@
 // Leave `email` empty until a real, monitored mailbox exists — the contact
 // form and email links are hidden while it is empty.
 export const site = {
-  name: "Wendwosen Hirpo & Associates",
+  url: "https://wendwosen-hirpo-legal.vercel.app",
   phone: "+251 911 342 578",
   phoneHref: "tel:+251911342578",
   email: "",
-  location: "Bole, Addis Ababa, Ethiopia",
 };
 
+// Canonical (English) practice-area names. The intake assistant classifies
+// into these; each language's dictionary supplies the display label.
 export const practiceAreas = [
   "Intellectual Property",
   "Contracts & Commercial Law",
   "Business Formation & Licensing",
   "Litigation",
-];
+] as const;
+
+export type PracticeArea = (typeof practiceAreas)[number];
