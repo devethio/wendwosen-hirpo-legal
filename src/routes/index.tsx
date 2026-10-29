@@ -2,6 +2,9 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteNav } from "@/components/site-nav";
 import { SiteFooter } from "@/components/site-footer";
 import portrait from "@/assets/wendwosen-portrait.jpg";
+import skyline from "@/assets/addis-skyline.jpg";
+import office from "@/assets/chambers-office.jpg";
+import contract from "@/assets/contract-review.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -10,7 +13,8 @@ export const Route = createFileRoute("/")({
       { name: "description", content: "Wendwosen Hirpo is a leading Ethiopian attorney specializing in commercial arbitration, sovereign advisory, corporate restructuring, and international investment law. Chambers in Addis Ababa." },
       { property: "og:title", content: "Wendwosen Hirpo & Associates — Attorney at Law" },
       { property: "og:description", content: "Refined legal counsel for complex landscapes. Based in Addis Ababa, Ethiopia." },
-      { property: "og:image", content: portrait },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Index,
@@ -155,7 +159,7 @@ function Index() {
           <div className="mt-12 flex flex-wrap gap-x-12 gap-y-6 border-t border-ink/10 pt-8">
             <div>
               <span className="font-mono text-[10px] uppercase block mb-1 text-ink/40">Education</span>
-              <span className="text-sm font-medium">LL.M. Harvard Law School</span>
+              <span className="text-sm font-medium">LL.B. & LL.M. Addis Ababa University</span>
             </div>
             <div>
               <span className="font-mono text-[10px] uppercase block mb-1 text-ink/40">Bar Admission</span>
@@ -229,6 +233,57 @@ function Index() {
             True legal counsel is not merely the interpretation of statutes, but the navigation of human trust and sovereign dignity.
           </blockquote>
           <cite className="font-mono text-xs uppercase tracking-[0.2em] text-ochre not-italic">— Wendwosen Hirpo</cite>
+        </div>
+      </section>
+
+      {/* Chambers — photo story */}
+      <section className="px-6 md:px-12 lg:px-20 py-24 border-t border-ink/10">
+        <div className="max-w-7xl mx-auto">
+          <div className="relative overflow-hidden mb-px">
+            <img src={skyline} alt="Addis Ababa skyline at sunset" loading="lazy" width={1600} height={912} className="w-full h-[420px] md:h-[520px] object-cover" />
+            <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/20 to-transparent" />
+            <div className="absolute bottom-0 left-0 p-8 md:p-14 max-w-2xl text-parchment">
+              <span className="font-mono text-[10px] uppercase tracking-widest text-ochre mb-4 block">— Rooted in Addis Ababa</span>
+              <h2 className="font-display text-4xl md:text-6xl tracking-tight text-balance">Local fluency, international standard.</h2>
+            </div>
+          </div>
+          <div className="grid md:grid-cols-3 gap-10 mt-16">
+            <img src={office} alt="The chambers in Bole, Addis Ababa" loading="lazy" width={1200} height={1504} className="w-full aspect-[4/5] object-cover" />
+            <div className="flex flex-col justify-center">
+              <span className="font-mono text-[10px] uppercase tracking-widest text-ochre mb-4 block">— The Chambers</span>
+              <h3 className="font-display text-3xl md:text-4xl tracking-tight mb-6">A quiet room for consequential decisions.</h3>
+              <p className="text-ink/70 leading-relaxed mb-4">Clients are received at the Bole chambers, where every matter is handled personally by Wendwosen — from first consultation to final filing.</p>
+              <p className="text-ink/70 leading-relaxed">Years at the Ethiopian Intellectual Property Office give the practice a rare, inside view of how registrations, oppositions and licensing are actually decided.</p>
+              <ul className="mt-8 space-y-3 text-sm">
+                {["Trademark & patent registration", "Contract drafting & review", "Business formation & licensing", "Litigation before Federal courts"].map((s) => (
+                  <li key={s} className="flex gap-3 border-b border-ink/10 pb-3"><span className="text-ochre">—</span>{s}</li>
+                ))}
+              </ul>
+            </div>
+            <img src={contract} alt="Reviewing a contract under the Ethiopian Civil Code" loading="lazy" width={1200} height={1504} className="w-full aspect-[4/5] object-cover" />
+          </div>
+        </div>
+      </section>
+
+      {/* How we work */}
+      <section className="bg-ink text-parchment px-6 md:px-12 lg:px-20 py-24">
+        <div className="max-w-7xl mx-auto">
+          <span className="font-mono text-[10px] uppercase tracking-widest text-ochre mb-4 block">— How an engagement works</span>
+          <h2 className="font-display text-4xl md:text-5xl tracking-tight mb-14 max-w-2xl">Four clear steps. No surprises.</h2>
+          <div className="grid md:grid-cols-4 gap-px bg-parchment/10 border border-parchment/10">
+            {[
+              { n: "01", t: "Consultation", b: "A confidential meeting in person or by video to understand the matter and its stakes." },
+              { n: "02", t: "Assessment", b: "A written opinion on legal position, risks, options and a transparent fee estimate." },
+              { n: "03", t: "Action", b: "Drafting, filing, negotiation or representation — with regular, plain-language updates." },
+              { n: "04", t: "Resolution", b: "Closing the matter cleanly, with documents archived and follow-up obligations tracked." },
+            ].map((s) => (
+              <div key={s.n} className="bg-ink p-8">
+                <span className="font-mono text-xs text-ochre block mb-6">{s.n}</span>
+                <h3 className="font-display text-2xl mb-3">{s.t}</h3>
+                <p className="text-parchment/60 text-sm leading-relaxed">{s.b}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
