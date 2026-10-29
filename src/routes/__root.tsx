@@ -9,6 +9,7 @@ import {
   Scripts,
 } from "@tanstack/react-router";
 
+import { am } from "@/content/am";
 import { useLocale } from "@/lib/i18n";
 import appCss from "../styles.css?url";
 
@@ -77,15 +78,16 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Wendwosen Hirpo & Associates — Advocate, Addis Ababa" },
-      { name: "description", content: "Wendwosen Hirpo is an Ethiopian advocate in Addis Ababa practising intellectual property, contracts, business formation and litigation before the Federal courts." },
-      { name: "author", content: "Wendwosen Hirpo & Associates" },
-      { property: "og:title", content: "Wendwosen Hirpo & Associates" },
-      { property: "og:description", content: "Intellectual property, contracts, business formation and Federal court litigation. Bole, Addis Ababa." },
+      // Site-wide fallbacks in the default language; each page overrides them via pageHead().
+      { title: am.meta.home.title },
+      { name: "description", content: am.meta.home.description },
+      { name: "author", content: am.common.firm },
+      { property: "og:title", content: am.common.firm },
+      { property: "og:description", content: am.meta.home.description },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
-      { name: "twitter:title", content: "Wendwosen Hirpo & Associates" },
-      { name: "twitter:description", content: "Intellectual property, contracts, business formation and Federal court litigation. Bole, Addis Ababa." },
+      { name: "twitter:title", content: am.common.firm },
+      { name: "twitter:description", content: am.meta.home.description },
     ],
     links: [
       { rel: "preconnect", href: "https://fonts.googleapis.com" },

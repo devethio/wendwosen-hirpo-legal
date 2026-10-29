@@ -1,8 +1,8 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { HomePage } from "@/components/pages/home";
-import { pageHead } from "@/lib/i18n";
+import { createFileRoute, redirect } from "@tanstack/react-router";
 
+// Amharic lived under /am before it became the default; keep those links working.
 export const Route = createFileRoute("/am/")({
-  head: () => pageHead("am", "home"),
-  component: HomePage,
+  beforeLoad: () => {
+    throw redirect({ href: "/", statusCode: 301 });
+  },
 });

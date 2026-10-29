@@ -15,10 +15,12 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as IntakeRouteImport } from './routes/intake'
 import { Route as PracticeRouteImport } from './routes/practice'
 import { Route as AmIndexRouteImport } from './routes/am/index'
-import { Route as AmAboutRouteImport } from './routes/am/about'
-import { Route as AmContactRouteImport } from './routes/am/contact'
-import { Route as AmIntakeRouteImport } from './routes/am/intake'
-import { Route as AmPracticeRouteImport } from './routes/am/practice'
+import { Route as AmSplatRouteImport } from './routes/am/$'
+import { Route as EnIndexRouteImport } from './routes/en/index'
+import { Route as EnAboutRouteImport } from './routes/en/about'
+import { Route as EnContactRouteImport } from './routes/en/contact'
+import { Route as EnIntakeRouteImport } from './routes/en/intake'
+import { Route as EnPracticeRouteImport } from './routes/en/practice'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -50,24 +52,34 @@ const AmIndexRoute = AmIndexRouteImport.update({
   path: '/am/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AmAboutRoute = AmAboutRouteImport.update({
-  id: '/am/about',
-  path: '/am/about',
+const AmSplatRoute = AmSplatRouteImport.update({
+  id: '/am/$',
+  path: '/am/$',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AmContactRoute = AmContactRouteImport.update({
-  id: '/am/contact',
-  path: '/am/contact',
+const EnIndexRoute = EnIndexRouteImport.update({
+  id: '/en/',
+  path: '/en/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AmIntakeRoute = AmIntakeRouteImport.update({
-  id: '/am/intake',
-  path: '/am/intake',
+const EnAboutRoute = EnAboutRouteImport.update({
+  id: '/en/about',
+  path: '/en/about',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AmPracticeRoute = AmPracticeRouteImport.update({
-  id: '/am/practice',
-  path: '/am/practice',
+const EnContactRoute = EnContactRouteImport.update({
+  id: '/en/contact',
+  path: '/en/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EnIntakeRoute = EnIntakeRouteImport.update({
+  id: '/en/intake',
+  path: '/en/intake',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EnPracticeRoute = EnPracticeRouteImport.update({
+  id: '/en/practice',
+  path: '/en/practice',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -77,11 +89,13 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/intake': typeof IntakeRoute
   '/practice': typeof PracticeRoute
-  '/am/about': typeof AmAboutRoute
-  '/am/contact': typeof AmContactRoute
-  '/am/intake': typeof AmIntakeRoute
-  '/am/practice': typeof AmPracticeRoute
+  '/am/$': typeof AmSplatRoute
+  '/en/about': typeof EnAboutRoute
+  '/en/contact': typeof EnContactRoute
+  '/en/intake': typeof EnIntakeRoute
+  '/en/practice': typeof EnPracticeRoute
   '/am/': typeof AmIndexRoute
+  '/en/': typeof EnIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -89,11 +103,13 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/intake': typeof IntakeRoute
   '/practice': typeof PracticeRoute
-  '/am/about': typeof AmAboutRoute
-  '/am/contact': typeof AmContactRoute
-  '/am/intake': typeof AmIntakeRoute
-  '/am/practice': typeof AmPracticeRoute
+  '/am/$': typeof AmSplatRoute
+  '/en/about': typeof EnAboutRoute
+  '/en/contact': typeof EnContactRoute
+  '/en/intake': typeof EnIntakeRoute
+  '/en/practice': typeof EnPracticeRoute
   '/am': typeof AmIndexRoute
+  '/en': typeof EnIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -102,11 +118,13 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/intake': typeof IntakeRoute
   '/practice': typeof PracticeRoute
-  '/am/about': typeof AmAboutRoute
-  '/am/contact': typeof AmContactRoute
-  '/am/intake': typeof AmIntakeRoute
-  '/am/practice': typeof AmPracticeRoute
+  '/am/$': typeof AmSplatRoute
+  '/en/about': typeof EnAboutRoute
+  '/en/contact': typeof EnContactRoute
+  '/en/intake': typeof EnIntakeRoute
+  '/en/practice': typeof EnPracticeRoute
   '/am/': typeof AmIndexRoute
+  '/en/': typeof EnIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -116,11 +134,13 @@ export interface FileRouteTypes {
     | '/contact'
     | '/intake'
     | '/practice'
-    | '/am/about'
-    | '/am/contact'
-    | '/am/intake'
-    | '/am/practice'
+    | '/am/$'
+    | '/en/about'
+    | '/en/contact'
+    | '/en/intake'
+    | '/en/practice'
     | '/am/'
+    | '/en/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -128,11 +148,13 @@ export interface FileRouteTypes {
     | '/contact'
     | '/intake'
     | '/practice'
-    | '/am/about'
-    | '/am/contact'
-    | '/am/intake'
-    | '/am/practice'
+    | '/am/$'
+    | '/en/about'
+    | '/en/contact'
+    | '/en/intake'
+    | '/en/practice'
     | '/am'
+    | '/en'
   id:
     | '__root__'
     | '/'
@@ -140,11 +162,13 @@ export interface FileRouteTypes {
     | '/contact'
     | '/intake'
     | '/practice'
-    | '/am/about'
-    | '/am/contact'
-    | '/am/intake'
-    | '/am/practice'
+    | '/am/$'
+    | '/en/about'
+    | '/en/contact'
+    | '/en/intake'
+    | '/en/practice'
     | '/am/'
+    | '/en/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -153,11 +177,13 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   IntakeRoute: typeof IntakeRoute
   PracticeRoute: typeof PracticeRoute
-  AmAboutRoute: typeof AmAboutRoute
-  AmContactRoute: typeof AmContactRoute
-  AmIntakeRoute: typeof AmIntakeRoute
-  AmPracticeRoute: typeof AmPracticeRoute
+  AmSplatRoute: typeof AmSplatRoute
+  EnAboutRoute: typeof EnAboutRoute
+  EnContactRoute: typeof EnContactRoute
+  EnIntakeRoute: typeof EnIntakeRoute
+  EnPracticeRoute: typeof EnPracticeRoute
   AmIndexRoute: typeof AmIndexRoute
+  EnIndexRoute: typeof EnIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -204,32 +230,46 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AmIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/am/about': {
-      id: '/am/about'
-      path: '/am/about'
-      fullPath: '/am/about'
-      preLoaderRoute: typeof AmAboutRouteImport
+    '/am/$': {
+      id: '/am/$'
+      path: '/am/$'
+      fullPath: '/am/$'
+      preLoaderRoute: typeof AmSplatRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/am/contact': {
-      id: '/am/contact'
-      path: '/am/contact'
-      fullPath: '/am/contact'
-      preLoaderRoute: typeof AmContactRouteImport
+    '/en/': {
+      id: '/en/'
+      path: '/en'
+      fullPath: '/en/'
+      preLoaderRoute: typeof EnIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/am/intake': {
-      id: '/am/intake'
-      path: '/am/intake'
-      fullPath: '/am/intake'
-      preLoaderRoute: typeof AmIntakeRouteImport
+    '/en/about': {
+      id: '/en/about'
+      path: '/en/about'
+      fullPath: '/en/about'
+      preLoaderRoute: typeof EnAboutRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/am/practice': {
-      id: '/am/practice'
-      path: '/am/practice'
-      fullPath: '/am/practice'
-      preLoaderRoute: typeof AmPracticeRouteImport
+    '/en/contact': {
+      id: '/en/contact'
+      path: '/en/contact'
+      fullPath: '/en/contact'
+      preLoaderRoute: typeof EnContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/en/intake': {
+      id: '/en/intake'
+      path: '/en/intake'
+      fullPath: '/en/intake'
+      preLoaderRoute: typeof EnIntakeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/en/practice': {
+      id: '/en/practice'
+      path: '/en/practice'
+      fullPath: '/en/practice'
+      preLoaderRoute: typeof EnPracticeRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -241,11 +281,13 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   IntakeRoute: IntakeRoute,
   PracticeRoute: PracticeRoute,
-  AmAboutRoute: AmAboutRoute,
-  AmContactRoute: AmContactRoute,
-  AmIntakeRoute: AmIntakeRoute,
-  AmPracticeRoute: AmPracticeRoute,
+  AmSplatRoute: AmSplatRoute,
+  EnAboutRoute: EnAboutRoute,
+  EnContactRoute: EnContactRoute,
+  EnIntakeRoute: EnIntakeRoute,
+  EnPracticeRoute: EnPracticeRoute,
   AmIndexRoute: AmIndexRoute,
+  EnIndexRoute: EnIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

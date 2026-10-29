@@ -3,28 +3,29 @@ import { am } from "@/content/am";
 import { en } from "@/content/en";
 import { site } from "./site";
 
-// English lives at the root, Amharic under /am. The language is read from the
-// URL so server rendering, links and the language switch all agree.
+// Amharic is the default and lives at the root; English lives under /en. The
+// language is read from the URL so server rendering, links and the language
+// switch all agree.
 export type Lang = "en" | "am";
 
 const dictionaries = { en, am };
 
 export const paths = {
-  en: { home: "/", practice: "/practice", about: "/about", intake: "/intake", contact: "/contact" },
-  am: { home: "/am", practice: "/am/practice", about: "/am/about", intake: "/am/intake", contact: "/am/contact" },
+  am: { home: "/", practice: "/practice", about: "/about", intake: "/intake", contact: "/contact" },
+  en: { home: "/en", practice: "/en/practice", about: "/en/about", intake: "/en/intake", contact: "/en/contact" },
 } as const;
 
-export type PageKey = keyof (typeof paths)["en"];
+export type PageKey = keyof (typeof paths)["am"];
 
-const pageKeys = Object.keys(paths.en) as PageKey[];
+const pageKeys = Object.keys(paths.am) as PageKey[];
 
 export function langOf(pathname: string): Lang {
-  return pathname === "/am" || pathname.startsWith("/am/") ? "am" : "en";
+  return pathname === "/en" || pathname.startsWith("/en/") ? "en" : "am";
 }
 
 function pageOf(pathname: string): PageKey | null {
-  const bare = pathname.replace(/^\/am(?=\/|$)/, "").replace(/\/$/, "") || "/";
-  return pageKeys.find((k) => paths.en[k] === bare) ?? null;
+  const bare = pathname.replace(/^\/en(?=\/|$)/, "").replace(/\/$/, "") || "/";
+  return pageKeys.find((k) => paths.am[k] === bare) ?? null;
 }
 
 export function useLocale() {
@@ -61,6 +62,9 @@ export function pageHead(lang: Lang, page: PageKey) {
   }
   return {
     meta,
-    links: (["en", "am"] as const).map((l) => ({ rel: "alternate", hrefLang: l, href: site.url + paths[l][page] })),
+    links: [
+      ...(["am", "en"] as const).map((l) => ({ rel: "alternate", hrefLang: l, href: site.url + paths[l][page] })),
+      { rel: "alternate", hrefLang: "x-default", href: site.url + paths.am[page] },
+    ],
   };
 }

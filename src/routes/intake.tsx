@@ -3,6 +3,6 @@ import { IntakePage } from "@/components/pages/intake";
 import { pageHead } from "@/lib/i18n";
 
 export const Route = createFileRoute("/intake")({
-  head: () => pageHead("en", "intake"),
+  head: () => pageHead("am", "intake"),
   component: IntakePage,
 });

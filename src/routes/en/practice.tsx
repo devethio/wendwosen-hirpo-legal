@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { PracticePage } from "@/components/pages/practice";
 import { pageHead } from "@/lib/i18n";
 
-export const Route = createFileRoute("/am/practice")({
-  head: () => pageHead("am", "practice"),
+export const Route = createFileRoute("/en/practice")({
+  head: () => pageHead("en", "practice"),
   component: PracticePage,
 });

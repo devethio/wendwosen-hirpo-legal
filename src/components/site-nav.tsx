@@ -14,11 +14,11 @@ export function LangSwitch({ dark = false, className = "" }: { dark?: boolean; c
   const item = "px-2.5 py-1.5 leading-none transition-colors";
   return (
     <div role="group" aria-label={t.nav.language} className={`inline-flex items-center border ${dark ? "border-parchment/20" : "border-ink/15"} text-[11px] font-medium ${className}`}>
-      <Link to={paths.en[target]} resetScroll={false} lang="en" hrefLang="en" aria-current={lang === "en" ? "true" : undefined} className={`${item} ${lang === "en" ? on : off}`}>
-        EN
-      </Link>
       <Link to={paths.am[target]} resetScroll={false} lang="am" hrefLang="am" aria-current={lang === "am" ? "true" : undefined} className={`${item} text-[13px] ${lang === "am" ? on : off}`}>
         አማርኛ
+      </Link>
+      <Link to={paths.en[target]} resetScroll={false} lang="en" hrefLang="en" aria-current={lang === "en" ? "true" : undefined} className={`${item} ${lang === "en" ? on : off}`}>
+        EN
       </Link>
     </div>
   );
