@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
+import { Seal } from "@/components/seal";
 import { paths, useLocale } from "@/lib/i18n";
 
 const order = ["home", "practice", "about", "intake", "contact"] as const;
@@ -31,8 +32,9 @@ export function SiteNav() {
 
   return (
     <nav className="sticky top-0 z-50 flex justify-between items-center gap-3 px-5 md:px-12 py-4 md:py-5 bg-parchment/85 backdrop-blur-md border-b border-ink/10">
-      <Link to={to.home} onClick={() => setOpen(false)} className="font-display text-[15px] sm:text-lg md:text-xl font-bold tracking-tight text-ink whitespace-nowrap">
-        W. HIRPO <span className="text-ochre">&</span> ASSOCIATES
+      <Link to={to.home} onClick={() => setOpen(false)} className="flex items-center gap-2.5 font-display text-[15px] sm:text-lg md:text-xl font-bold tracking-tight text-ink whitespace-nowrap">
+        <Seal className="size-8 md:size-9" />
+        <span>W. HIRPO<span className="hidden sm:inline"> <span className="text-ochre">&</span> ASSOCIATES</span></span>
       </Link>
       <div className="hidden lg:flex items-center gap-8 text-[11px] font-medium uppercase tracking-[0.2em] text-ink/60">
         {links.map((l) => (

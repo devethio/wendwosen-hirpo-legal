@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Phone } from "lucide-react";
+import { Seal } from "@/components/seal";
 import { LangSwitch } from "@/components/site-nav";
 import { Tibeb } from "@/components/tibeb";
 import { useLocale } from "@/lib/i18n";
@@ -15,7 +16,13 @@ export function SiteFooter() {
         <div className="px-6 md:px-12 pt-16 pb-28 lg:pb-16">
           <div className="max-w-7xl mx-auto grid md:grid-cols-4 gap-12">
             <div className="md:col-span-2">
-              <div className="font-display text-2xl text-parchment mb-4">{t.common.firmFirst} <span className="italic text-ochre">{t.common.firmRest}</span></div>
+              <div className="flex items-center gap-4 mb-4">
+                <Seal className="size-14 text-ochre" />
+                <div>
+                  <div className="font-display text-2xl text-parchment">{t.common.firmFirst} <span className="italic text-ochre">{t.common.firmRest}</span></div>
+                  <div className="font-display italic text-sm text-parchment/70 mt-1">“{t.common.tagline}”</div>
+                </div>
+              </div>
               <p className="text-sm max-w-sm leading-relaxed mb-8">{t.footer.blurb}</p>
               <LangSwitch dark />
             </div>
@@ -23,7 +30,10 @@ export function SiteFooter() {
               <h4 className="text-[10px] font-mono uppercase tracking-widest text-ochre mb-5">{t.footer.chambers}</h4>
               <ul className="text-sm space-y-3">
                 {t.common.address.map((line) => <li key={line}>{line}</li>)}
-                <li className="pt-2"><a href={site.phoneHref} className="hover:text-parchment transition-colors">{site.phone}</a></li>
+                <li>{t.common.poBox} {site.poBox}</li>
+                {site.phones.map((p, i) => (
+                  <li key={p.href} className={i === 0 ? "pt-2" : undefined}><a href={p.href} className="hover:text-parchment transition-colors">{p.display}</a></li>
+                ))}
                 {site.email && <li><a href={`mailto:${site.email}`} className="hover:text-parchment transition-colors">{site.email}</a></li>}
               </ul>
             </div>

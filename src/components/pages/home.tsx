@@ -1,6 +1,8 @@
 import { Link } from "@tanstack/react-router";
-import { ArrowRight, Building2, FileSignature, Landmark, Languages, Lightbulb, Phone, Scale, UserRound, type LucideIcon } from "lucide-react";
+import { ArrowRight, FileSignature, Handshake, Landmark, Languages, Lightbulb, Package, Phone, Scale, Stamp, type LucideIcon } from "lucide-react";
+import { Coverage } from "@/components/coverage";
 import { Emphasis } from "@/components/rich";
+import { Seal } from "@/components/seal";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteNav } from "@/components/site-nav";
 import { Tibeb } from "@/components/tibeb";
@@ -9,12 +11,13 @@ import { site } from "@/lib/site";
 import portrait from "@/assets/wendwosen-portrait.jpg";
 import skyline from "@/assets/addis-skyline.jpg";
 
-export const areaIcons: Record<string, LucideIcon> = { ip: Lightbulb, contracts: FileSignature, business: Building2, litigation: Scale };
-const whyIcons = [Landmark, UserRound, Languages];
+export const areaIcons: Record<string, LucideIcon> = { trademarks: Stamp, patents: Lightbulb, designs: Package, disputes: Scale, consultancy: FileSignature };
+const whyIcons = [Landmark, Handshake, Languages];
 
 export function HomePage() {
   const { t, to } = useLocale();
   const h = t.home;
+  const ipAreas = t.areas.filter((a) => a.id !== "consultancy");
 
   return (
     <div className="bg-parchment text-ink selection:bg-ochre/20">
@@ -29,12 +32,13 @@ export function HomePage() {
           </figure>
           <div className="flex items-center gap-3 mb-6">
             <div className="h-px w-12 bg-ochre"></div>
-            <span className="font-mono text-[10px] uppercase tracking-widest text-ochre">{t.common.place}</span>
+            <span className="font-mono text-[10px] uppercase tracking-widest text-ochre">{t.common.discipline}</span>
           </div>
-          <h1 className="font-display text-6xl md:text-8xl lg:text-9xl leading-[0.9] tracking-tighter mb-8 text-balance">
+          <h1 className="font-display text-6xl md:text-8xl lg:text-9xl leading-[0.9] tracking-tighter mb-6 text-balance">
             {t.common.firstName} <br /><span className="italic">{t.common.lastName}</span>
           </h1>
-          <p className="text-xl md:text-2xl text-ink/70 leading-relaxed max-w-xl text-pretty font-light">{h.hero.lede}</p>
+          <p className="font-display italic text-2xl md:text-3xl text-ochre mb-8">“{t.common.tagline}”</p>
+          <p className="text-lg md:text-xl text-ink/70 leading-relaxed max-w-xl text-pretty font-light">{h.hero.lede}</p>
           <div className="mt-10 flex flex-wrap items-center gap-4">
             <Link to={to.contact} className="group inline-flex items-center gap-3 bg-ink text-parchment px-6 py-3.5 font-mono text-[10px] uppercase tracking-widest hover:bg-ochre transition-colors">
               {t.common.requestConsultation}
@@ -63,7 +67,27 @@ export function HomePage() {
         </figure>
       </section>
 
-      {/* Practice areas */}
+      {/* About the firm */}
+      <section className="px-6 md:px-12 lg:px-20 py-24 border-t border-ink/10">
+        <div className="max-w-7xl mx-auto grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+          <div className="lg:col-span-4 flex justify-center reveal">
+            <Seal label={t.common.firm} className="size-48 md:size-64 text-ink" />
+          </div>
+          <div className="lg:col-span-8 reveal">
+            <span className="font-mono text-[10px] uppercase tracking-widest text-ochre mb-4 block">— {h.firm.eyebrow}</span>
+            <h2 className="font-display text-3xl md:text-5xl tracking-tight leading-tight mb-6 text-balance">{h.firm.title}</h2>
+            <p className="text-ink/70 text-lg leading-relaxed font-light mb-8 max-w-3xl">{h.firm.body}</p>
+            <div className="flex flex-wrap items-center gap-3">
+              <span className="font-mono text-[10px] uppercase tracking-widest text-ink/50 mr-1">{h.firm.servingLabel}</span>
+              {h.firm.serving.map((s) => (
+                <span key={s} className="border border-ochre/40 bg-ochre/5 px-4 py-2 text-sm">{s}</span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Core practice areas */}
       <section className="bg-ink text-parchment">
         <Tibeb className="text-ochre/70" />
         <div className="px-6 md:px-12 lg:px-20 py-24 md:py-32">
@@ -71,13 +95,13 @@ export function HomePage() {
             <header className="reveal flex flex-col md:flex-row md:items-end justify-between mb-16 md:mb-20 gap-8">
               <div>
                 <span className="font-mono text-[10px] uppercase tracking-widest text-ochre mb-4 block">— {h.practice.eyebrow}</span>
-                <h2 className="font-display text-4xl md:text-6xl tracking-tight max-w-2xl text-balance">{h.practice.title}</h2>
+                <h2 className="font-display text-4xl md:text-6xl tracking-tight max-w-3xl text-balance">{h.practice.title}</h2>
               </div>
-              <p className="max-w-md text-parchment/60 text-sm leading-relaxed">{h.practice.intro}</p>
+              <p className="max-w-sm text-parchment/60 text-sm leading-relaxed">{h.practice.intro}</p>
             </header>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-parchment/10 border border-parchment/10">
-              {t.areas.map((a, i) => {
+              {ipAreas.map((a, i) => {
                 const Icon = areaIcons[a.id];
                 return (
                   <Link key={a.id} to={to.practice} hash={a.id} className="reveal group relative bg-ink p-10 md:p-12 hover:bg-white/[0.03] transition-colors">
@@ -88,8 +112,8 @@ export function HomePage() {
                       </span>
                       <span className="font-mono text-xs text-parchment/30">0{i + 1}</span>
                     </div>
-                    <h3 className="font-display text-3xl mb-4">{a.title}</h3>
-                    <p className="text-parchment/60 leading-relaxed text-pretty text-sm mb-8">{a.summary}</p>
+                    <h3 className="font-display text-3xl mb-4 text-balance">{a.title}</h3>
+                    <p className="text-parchment/60 leading-relaxed text-pretty text-sm mb-8">{a.body}</p>
                     <span className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest text-ochre">
                       {h.practice.learnMore}
                       <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-1" />
@@ -98,15 +122,20 @@ export function HomePage() {
                 );
               })}
             </div>
+            <div className="mt-12 text-center">
+              <Link to={to.practice} className="inline-flex items-center gap-3 font-mono text-[10px] uppercase tracking-widest text-ochre hover:text-parchment transition-colors">
+                {h.practice.viewAll} <ArrowRight className="size-3.5" />
+              </Link>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Why — rooted in Addis */}
+      {/* Strategic advantages */}
       <section className="px-6 md:px-12 lg:px-20 py-24">
         <div className="max-w-7xl mx-auto">
           <div className="relative overflow-hidden">
-            <img src={skyline} alt="" loading="lazy" width={1600} height={912} className="w-full h-[360px] md:h-[480px] object-cover" />
+            <img src={skyline} alt="" loading="lazy" width={1600} height={912} className="w-full h-[360px] md:h-[440px] object-cover" />
             <div className="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/25 to-transparent" />
             <div className="absolute bottom-0 left-0 p-8 md:p-14 max-w-2xl text-parchment">
               <span className="font-mono text-[10px] uppercase tracking-widest text-ochre mb-4 block">— {h.why.eyebrow}</span>
@@ -127,6 +156,8 @@ export function HomePage() {
           </div>
         </div>
       </section>
+
+      <Coverage />
 
       {/* How an engagement works */}
       <section className="bg-ink text-parchment px-6 md:px-12 lg:px-20 py-24 md:py-28">
@@ -150,9 +181,10 @@ export function HomePage() {
 
       {/* CTA */}
       <section className="px-6 md:px-12 lg:px-20 py-24 md:py-32">
-        <div className="reveal max-w-6xl mx-auto bg-coffee text-parchment shadow-2xl shadow-ink/20" style={{ backgroundColor: "var(--coffee)" }}>
+        <div className="reveal relative overflow-hidden max-w-6xl mx-auto text-parchment shadow-2xl shadow-ink/20" style={{ backgroundColor: "var(--coffee)" }}>
           <Tibeb className="text-ochre/80" />
-          <div className="grid md:grid-cols-12 gap-10 p-10 md:p-16 items-center">
+          <Seal className="absolute -right-16 -bottom-16 size-80 text-parchment/[0.06]" />
+          <div className="relative grid md:grid-cols-12 gap-10 p-10 md:p-16 items-center">
             <div className="md:col-span-7">
               <h2 className="font-display text-4xl md:text-6xl tracking-tight mb-6 text-balance"><Emphasis parts={h.cta.title} /></h2>
               <p className="text-parchment/70 text-lg leading-relaxed max-w-xl">{h.cta.body}</p>
@@ -163,11 +195,13 @@ export function HomePage() {
                 <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
               </Link>
               <div>
-                <span className="font-mono text-[10px] uppercase tracking-widest text-parchment/50 block mb-2">{h.cta.or}</span>
-                <a href={site.phoneHref} className="inline-flex items-center gap-3 font-display text-3xl md:text-4xl tracking-tight hover:text-ochre transition-colors">
-                  <Phone className="size-6 text-ochre" strokeWidth={1.5} />
-                  {site.phone}
-                </a>
+                <span className="font-mono text-[10px] uppercase tracking-widest text-parchment/50 block mb-3">{h.cta.or}</span>
+                {site.phones.map((p) => (
+                  <a key={p.href} href={p.href} className="flex items-center gap-3 font-display text-2xl md:text-3xl tracking-tight hover:text-ochre transition-colors mb-1">
+                    <Phone className="size-5 text-ochre" strokeWidth={1.5} />
+                    {p.display}
+                  </a>
+                ))}
               </div>
             </div>
           </div>

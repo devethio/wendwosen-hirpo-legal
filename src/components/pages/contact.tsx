@@ -55,10 +55,16 @@ export function ContactPage() {
       <section className="px-6 md:px-12 lg:px-20 pb-24 max-w-7xl mx-auto grid lg:grid-cols-12 gap-16">
         <div className="lg:col-span-5 space-y-10">
           <Info Icon={MapPin} label={c.chambers}>
-            <p className="text-ink/80 leading-relaxed">{t.common.address.map((l, i) => <span key={l}>{i > 0 && <br />}{l}</span>)}</p>
+            <p className="text-ink/80 leading-relaxed">
+              {t.common.firm}
+              {t.common.address.map((l) => <span key={l}><br />{l}</span>)}
+              <br />{t.common.poBox} {site.poBox}
+            </p>
           </Info>
           <Info Icon={Phone} label={c.direct}>
-            <a href={site.phoneHref} className="font-display text-3xl tracking-tight hover:text-ochre transition-colors">{site.phone}</a>
+            {site.phones.map((p) => (
+              <a key={p.href} href={p.href} className="block font-display text-3xl tracking-tight hover:text-ochre transition-colors">{p.display}</a>
+            ))}
           </Info>
           {site.email && (
             <Info Icon={Mail} label={c.email}>

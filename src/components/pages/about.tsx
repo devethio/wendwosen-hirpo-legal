@@ -23,7 +23,7 @@ export function AboutPage() {
             <div className="mt-8 flex flex-wrap gap-x-10 gap-y-4 font-mono text-[11px] uppercase tracking-widest text-ink/60">
               <a href={site.phoneHref} className="hover:text-ochre transition-colors">{site.phone}</a>
               <span className="text-ink/30">·</span>
-              <span>{t.common.bole}</span>
+              <span>{t.common.office}</span>
             </div>
           </div>
           <figure className="group relative lg:col-span-5 mr-4 mb-4 animate-fade-up-delay">

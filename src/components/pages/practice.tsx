@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowRight, Phone } from "lucide-react";
+import { Coverage } from "@/components/coverage";
 import { areaIcons } from "@/components/pages/home";
 import { Emphasis } from "@/components/rich";
 import { SiteFooter } from "@/components/site-footer";
@@ -33,7 +34,7 @@ export function PracticePage() {
           {t.areas.map((a, i) => {
             const Icon = areaIcons[a.id];
             return (
-              <article key={a.id} id={a.id} className="reveal scroll-mt-28 bg-parchment p-10 md:p-12">
+              <article key={a.id} id={a.id} className={`reveal scroll-mt-28 bg-parchment p-10 md:p-12 ${a.id === "consultancy" ? "md:col-span-2" : ""}`}>
                 <div className="flex items-center justify-between mb-8">
                   <span className="flex size-12 items-center justify-center rounded-full bg-ochre/10 text-ochre"><Icon className="size-5" strokeWidth={1.5} /></span>
                   <span className="font-mono text-xs text-ink/30">0{i + 1}</span>
@@ -50,6 +51,8 @@ export function PracticePage() {
           })}
         </div>
       </section>
+
+      <Coverage />
 
       <section className="bg-ink text-parchment">
         <Tibeb className="text-ochre/70" />
